@@ -21,4 +21,4 @@ Letter scale:
 ```bash
 cd grade-calculator
 go test
-go test -coverage
+go test -cover
