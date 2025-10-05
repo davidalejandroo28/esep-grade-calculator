@@ -65,40 +65,33 @@ func GCBuilder(a, e, s int) *GradeCalculator {
 }
 
 func TestClearGrades(t *testing.T) {
-	// Clear A
 	if g := GCBuilder(100, 100, 100).GetFinalGrade(); g != "A" {
 		t.Fatalf("expected A, got %s", g)
 	}
-	// Clear B
 	if g := GCBuilder(85, 82, 80).GetFinalGrade(); g != "B" {
 		t.Fatalf("expected B, got %s", g)
 	}
-	// Clear C
 	if g := GCBuilder(75, 70, 70).GetFinalGrade(); g != "C" {
 		t.Fatalf("expected C, got %s", g)
 	}
-	// Clear D
 	if g := GCBuilder(65, 60, 60).GetFinalGrade(); g != "D" {
 		t.Fatalf("expected D, got %s", g)
 	}
 }
 
 func TestEmptyCategories_AverageZero(t *testing.T) {
-	// 100% on assignments and othes empty automatic F
 	gc := NewGradeCalculator()
 	gc.AddGrade("A1", 100, Assignment)
 	if g := gc.GetFinalGrade(); g != "F" {
 		t.Fatalf("expected F with only assignments=100, got %s", g)
 	}
 
-	// Only Exams grade and others missing automatic F
 	gc = NewGradeCalculator()
 	gc.AddGrade("E1", 100, Exam)
 	if g := gc.GetFinalGrade(); g != "F" {
 		t.Fatalf("expected F with only exams=100, got %s", g)
 	}
 
-	// Only essays present just like previous test -> F
 	gc = NewGradeCalculator()
 	gc.AddGrade("S1", 100, Essay)
 	if g := gc.GetFinalGrade(); g != "F" {
@@ -107,8 +100,7 @@ func TestEmptyCategories_AverageZero(t *testing.T) {
 }
 
 func TestAveragingPerCategoryAndRouting(t *testing.T) {
-	// This verifies that AddGrade routes to the correct slice by checking
-	// the resulting weighted average when multiple items exist per category.
+
 
 	gc := NewGradeCalculator()
 	gc.AddGrade("A1", 100, Assignment)
